@@ -33,7 +33,35 @@ class Suricata(BaseEngine):
         if not command:
             return False
         return_code, out, err = utils.system_execute(command.get('cmd'), command.get('params'))
-        if not return_code and out.isnumeric():
+        if not return_code and out.strip().isnumeric():
             return True
         else:
             return False
+
+    def start_service(self):
+        command = (self.config.get('suricata') or {}).get('start')
+        if not command:
+            return False
+        return_code, out, err = utils.system_execute(command)
+        if return_code:
+            print("=======err========")
+            print(err)
+            return False
+        else:
+            print("=======out========")
+            print(out)
+            return True
+
+    def stop_service(self):
+        command = (self.config.get('suricata') or {}).get('stop')
+        if not command:
+            return False
+        return_code, out, err = utils.system_execute(command)
+        if return_code:
+            print("=======err========")
+            print(err)
+            return False
+        else:
+            print("=======out========")
+            print(out)
+            return True

@@ -11,3 +11,17 @@ def get_engine_running_status():
     return json_response(data={
         'status': status
     })
+
+@blueprint.route('/start', methods=['POST'])
+def start_engine():
+    res = suri.start_service()
+    return json_response(data={
+        'status': res
+    })
+
+@blueprint.route('/stop', methods=['POST'])
+def start_engine():
+    res = suri.stop_service()
+    return json_response(data={
+        'status': res
+    })
