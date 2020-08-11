@@ -43,7 +43,7 @@ def build_config_from_env(app):
 
 def system_execute(cmd, params=None):
     try:
-        cp = subprocess.run([cmd, params] if params else [cmd], check=True, stdout=subprocess.PIPE, universal_newlines=True)
+        cp = subprocess.run([cmd, params] if params else [cmd], check=True, shell=True, stdout=subprocess.PIPE, universal_newlines=True)
         return cp.returncode, cp.stdout, cp.stderr
     except Exception as e:
         return -1, None, e
