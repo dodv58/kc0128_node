@@ -1,3 +1,9 @@
 DB_HOST:
 DB_USER:
 DB_PW:
+OS_TYPE: centos
+
+# suricata instance conf
+SYS_CONF_DIR: "/etc"
+DATA_RULES_DIR: "@e_datarulesdir@"
+LOCAL_STATE_DIR: "/run/suricata"

@@ -4,11 +4,10 @@ from logging.config import dictConfig
 from .config import app_config
 import yaml
 from .utils import build_config_from_env
-from .engine.suricata import Suricata
-
-suri = Suricata()
+from app import engine
 
 DEFAULT_CONFIG_NAME = os.getenv('ENV', 'production')
+_engine = None
 
 def handle_sigterm(signum, frame):
     logging.info('Gracefully exit')
@@ -35,8 +34,8 @@ def create_app(config_name=DEFAULT_CONFIG_NAME):
     # init logging
     dictConfig(app.config.get('LOGGING'))
 
-    # init suricata controller engine
-    suri.init_app(app)
+    # init engine
+    _engine = engine.init_engine(app)
 
     # init controller
     from . import controller
