@@ -15,6 +15,7 @@ def handle_sigterm(signum, frame):
     raise SystemExit
 
 def create_app(config_name=DEFAULT_CONFIG_NAME):
+    global _engine
     app = Flask(__name__, instance_relative_config=True)
 
     # ensure the logs folder exists

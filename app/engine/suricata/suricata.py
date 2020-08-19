@@ -32,6 +32,7 @@ class Suricata(BaseEngine):
         sc = SuricataSC(SOCKET_PATH)
         try:
             sc.connect()
+            print("Connected to socket: %s" % SOCKET_PATH)
             return sc
         except SuricataNetException as err:
             print("Unable to connect to socket %s: %s" % (SOCKET_PATH, err), file=sys.stderr)
