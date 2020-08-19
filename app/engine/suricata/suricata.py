@@ -93,3 +93,12 @@ class Suricata(BaseEngine):
         else:
             logger.info(out)
             return True
+
+    def get_iface_list(self):
+        (command, arguements) = self.sc.parse_command('iface-list')
+        res = self.sc.send_command(command, arguements)
+        return json.dumps(res)
+
+    def disconnect(self):
+        if self.sc:
+            self.sc.close()

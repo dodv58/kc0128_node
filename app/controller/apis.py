@@ -25,3 +25,10 @@ def stop_engine():
     return json_response(data={
         'status': res
     })
+
+@blueprint.route('/iface-list', methods=['GET'])
+def get_iface_list():
+    res = _engine.get_iface_list()
+    return json_response(data={
+        'status': res
+    })

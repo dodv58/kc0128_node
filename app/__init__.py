@@ -10,6 +10,8 @@ DEFAULT_CONFIG_NAME = os.getenv('ENV', 'production')
 _engine = None
 
 def handle_sigterm(signum, frame):
+    if _engine:
+        _engine.disconnect()
     logging.info('Gracefully exit')
     logging.info('System exit')
     raise SystemExit

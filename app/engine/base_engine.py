@@ -13,3 +13,5 @@ class BaseEngine:
         raise NotImplementedError()
     def restart_service(self):
         raise NotImplementedError()
+    def disconnect(self):
+        raise NotImplementedError()
